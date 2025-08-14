@@ -299,3 +299,25 @@ const debouncedScrollHandler = debounce(() => {
 }, 10);
 
 window.addEventListener('scroll', debouncedScrollHandler);
+
+  const serviceCards = document.querySelectorAll('.service-card');
+    serviceCards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        const cardVisible = 150;
+        
+        if (cardTop < window.innerHeight - cardVisible) {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 100);
+        }
+    });
+
+    // Initially hide service cards for animation
+    serviceCards.forEach(card => {
+        if (card.getBoundingClientRect().top > window.innerHeight - 150) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+        }
+    });
