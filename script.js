@@ -321,3 +321,34 @@ window.addEventListener('scroll', debouncedScrollHandler);
             card.style.transition = 'all 0.6s ease';
         }
     });
+
+        const timelineItems = document.querySelectorAll('.timeline-item');
+    timelineItems.forEach((item, index) => {
+        const itemTop = item.getBoundingClientRect().top;
+        const itemVisible = 150;
+        
+        if (itemTop < window.innerHeight - itemVisible) {
+            setTimeout(() => {
+                item.style.opacity = '1';
+                item.style.transform = 'translateY(0)';
+            }, index * 200);
+        }
+    });
+
+    // Initially hide timeline items for animation
+    timelineItems.forEach(item => {
+        if (item.getBoundingClientRect().top > window.innerHeight - 150) {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+        }
+    });
+
+    serviceCards.forEach(card => {
+        if (card.getBoundingClientRect().top > window.innerHeight - 150) {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'all 0.6s ease';
+        }
+  });
+
